@@ -1,5 +1,6 @@
 package lotto.service;
 
+import java.util.List;
 import lotto.domain.LottoWinningResult;
 import lotto.domain.UserLotto;
 import lotto.domain.WinningLotto;
@@ -22,11 +23,12 @@ public class LottoService {
         return lottoBuyService.buyLotto(lottoPurchaseRequest);
     }
 
-    public PurchasedLottoResponse printPurchasedLotto(UserLotto userLotto) {
-        return lottoBuyService.printPurchasedLotto(userLotto);
+    public List<PurchasedLottoResponse> printPurchasedLotto(UserLotto userLotto) {
+        return lottoBuyService.showPurchasedLottos(userLotto);
     }
 
-    public WinningLotto receiveWinningLottoInfo(WinningNumberRequest winningNumberRequest, BonusNumberRequest bonusNumberRequest) {
+    public WinningLotto receiveWinningLottoInfo(WinningNumberRequest winningNumberRequest,
+                                                BonusNumberRequest bonusNumberRequest) {
         return lottoCompareService.receiveWinningLottoInfo(winningNumberRequest, bonusNumberRequest);
     }
 

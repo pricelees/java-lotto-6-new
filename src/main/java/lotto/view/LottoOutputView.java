@@ -17,10 +17,11 @@ public class LottoOutputView {
             6개 일치 (2,000,000,000원) - %d개
             """;
 
-    public void printPurchasedLotto(PurchasedLottoResponse purchasedLottoResponse) {
-        List<List<Integer>> allLottoNumbers = purchasedLottoResponse.numbers();
-        System.out.printf(PURCHASE_MESSAGE + LottoConstants.LINE_SEPARATOR, allLottoNumbers.size());
-        allLottoNumbers.forEach(System.out::println);
+    public void printPurchasedLotto(List<PurchasedLottoResponse> purchasedLottoResponses) {
+        System.out.printf(PURCHASE_MESSAGE + LottoConstants.LINE_SEPARATOR, purchasedLottoResponses.size());
+        purchasedLottoResponses.stream()
+                .map(PurchasedLottoResponse::numbers)
+                .forEach(System.out::println);
         System.out.println();
     }
 
