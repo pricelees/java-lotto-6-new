@@ -11,13 +11,13 @@ public class BonusNumber {
         this.bonusNumber = bonusNumber;
     }
 
-    private static void validate(int bonusNumber) {
+    private void validate(int bonusNumber) {
         if (isInvalidNumber(bonusNumber)) {
             throw new IllegalArgumentException(INVALID_RANGE);
         }
     }
 
-    private static boolean isInvalidNumber(int bonusNumber) {
+    private boolean isInvalidNumber(int bonusNumber) {
         return bonusNumber > LottoConstants.LOTTO_MAX_NUMBER || bonusNumber < LottoConstants.LOTTO_MIN_NUMBER;
     }
 
