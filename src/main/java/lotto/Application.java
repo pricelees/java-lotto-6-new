@@ -1,9 +1,9 @@
 package lotto;
 
-import lotto.config.Configuration;
+import static lotto.config.Configuration.lottoController;
 
 public class Application {
     public static void main(String[] args) {
-        Configuration.lottoController().run();
+        lottoController().run();
     }
 }
