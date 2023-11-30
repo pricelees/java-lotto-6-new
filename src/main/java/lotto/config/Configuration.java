@@ -6,6 +6,7 @@ import lotto.service.LottoCompareService;
 import lotto.service.LottoService;
 import lotto.view.LottoInputView;
 import lotto.view.LottoOutputView;
+import lotto.view.Printer;
 import lotto.view.Reader;
 
 public class Configuration {
@@ -30,10 +31,14 @@ public class Configuration {
     }
 
     private static LottoOutputView lottoOutputView() {
-        return new LottoOutputView();
+        return new LottoOutputView(printer());
     }
 
     private static Reader reader() {
         return new Reader();
+    }
+
+    private static Printer printer() {
+        return new Printer();
     }
 }

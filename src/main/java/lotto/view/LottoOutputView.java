@@ -17,29 +17,35 @@ public class LottoOutputView {
             6개 일치 (2,000,000,000원) - %d개
             """;
 
+    private final Printer printer;
+
+    public LottoOutputView(Printer printer) {
+        this.printer = printer;
+    }
+
     public void printPurchasedLotto(List<PurchasedLottoResponse> purchasedLottoResponses) {
-        System.out.printf(PURCHASE_MESSAGE + LottoConstants.LINE_SEPARATOR, purchasedLottoResponses.size());
+        printer.printFormat(PURCHASE_MESSAGE + LottoConstants.LINE_SEPARATOR, purchasedLottoResponses.size());
         purchasedLottoResponses.stream()
                 .map(PurchasedLottoResponse::numbers)
-                .forEach(System.out::println);
-        System.out.println();
+                .forEach(printer::print);
+        printEmptyLine();
     }
 
     public void printStatistics(WinningResponse winningResponse) {
-        System.out.println(STATISTICS_PREFIX);
+        printer.print(STATISTICS_PREFIX);
         printMatchedInfo(winningResponse.matchCount());
         printEarningRate(winningResponse.earningRate());
     }
 
     private void printEarningRate(double earningRate) {
-        System.out.printf(EARNING_RATE_MESSAGE + LottoConstants.LINE_SEPARATOR, earningRate);
+        printer.printFormat(EARNING_RATE_MESSAGE + LottoConstants.LINE_SEPARATOR, earningRate);
     }
 
     private void printMatchedInfo(List<Integer> matchCounts) {
-        System.out.printf(STATISTICS_FORMAT + LottoConstants.LINE_SEPARATOR, matchCounts.toArray());
+        printer.printFormat(STATISTICS_FORMAT + LottoConstants.LINE_SEPARATOR, matchCounts.toArray());
     }
 
     public void printEmptyLine() {
-        System.out.println();
+        printer.printEmptyLine();
     }
 }
