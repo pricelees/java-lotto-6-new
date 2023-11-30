@@ -111,7 +111,6 @@ class LottoControllerTest {
 
     private void run() {
         Configuration.lottoController().run();
-        Console.close();
     }
 
     private void command(final String... args) {
