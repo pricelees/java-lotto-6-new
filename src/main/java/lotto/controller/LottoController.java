@@ -1,6 +1,5 @@
 package lotto.controller;
 
-import java.util.List;
 import lotto.domain.LottoWinningResult;
 import lotto.domain.UserLotto;
 import lotto.domain.WinningLotto;
@@ -54,7 +53,7 @@ public class LottoController {
 
     private LottoPurchaseRequest receivePurchaseAmount() {
         LottoPurchaseRequest lottoPurchaseRequest = ExceptionHandler.retryInputOnException(
-                () -> new LottoPurchaseRequest(lottoInputView.receivePurchaseAmount())
+                lottoInputView::receivePurchaseAmount
         );
         lottoOutputView.printEmptyLine();
 
@@ -63,23 +62,23 @@ public class LottoController {
 
     private WinningLotto receiveWinningLotto() {
         WinningNumberRequest winningNumberRequest = receiveWinningNumbers();
-        BonusNumberRequest bonusNumberRequest = receiveBonusNumber(winningNumberRequest.winningNumber());
+        BonusNumberRequest bonusNumberRequest = receiveBonusNumber(winningNumberRequest);
 
         return lottoService.receiveWinningLottoInfo(winningNumberRequest, bonusNumberRequest);
     }
 
     private WinningNumberRequest receiveWinningNumbers() {
         WinningNumberRequest winningNumberRequest = ExceptionHandler.retryInputOnException(
-                () -> new WinningNumberRequest(lottoInputView.receiveWinningNumber())
+                lottoInputView::receiveWinningNumber
         );
         lottoOutputView.printEmptyLine();
 
         return winningNumberRequest;
     }
 
-    private BonusNumberRequest receiveBonusNumber(List<Integer> winningNumber) {
+    private BonusNumberRequest receiveBonusNumber(WinningNumberRequest winningNumberRequest) {
         BonusNumberRequest bonusNumberRequest = ExceptionHandler.retryInputOnException(
-                () -> new BonusNumberRequest(winningNumber, lottoInputView.receiveBonusNumber())
+                () -> lottoInputView.receiveBonusNumber(winningNumberRequest)
         );
         lottoOutputView.printEmptyLine();
 
