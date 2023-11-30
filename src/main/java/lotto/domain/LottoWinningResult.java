@@ -13,7 +13,7 @@ public class LottoWinningResult {
 
     public long calculateTotalWinningAmount() {
         return allTypesCount.keySet().stream()
-                .mapToInt(type -> type.getWinningAmount() * allTypesCount.get(type))
+                .mapToLong(type -> type.getWinningAmount() * allTypesCount.get(type))
                 .sum();
     }
 

@@ -7,34 +7,34 @@ import lotto.constant.LottoConstants;
 
 public enum LottoWinningType {
     THREE_NUMBER_MATCHED(
-            5_000,
+            5_000L,
             (matchCount, hasBonusNumber) -> matchCount == 3
     ),
     FOUR_NUMBER_MATCHED(
-            50_000,
+            50_000L,
             (matchCount, hasBonusNumber) -> matchCount == 4
     ),
     FIVE_NUMBER_MATCHED(
-            1_500_000,
+            1_500_000L,
             (matchCount, hasBonusNumber) -> matchCount == 5 && !hasBonusNumber
     ),
     FIVE_AND_BONUS_MATCHED(
-            30_000_000,
+            30_000_000L,
             (matchCount, hasBonusNumber) -> matchCount == 5 && hasBonusNumber
     ),
     SIX_NUMBER_MATCHED(
-            2_000_000_000,
+            2_000_000_000L,
             (matchCount, hasBonusNumber) -> matchCount == 6
     ),
     NONE(
-            0,
+            0L,
             (matchCount, hasBonusNumber) -> matchCount < 3
     );
 
-    private final int winningAmount;
+    private final long winningAmount;
     private final BiPredicate<Integer, Boolean> condition;
 
-    LottoWinningType(int winningAmount, BiPredicate<Integer, Boolean> condition) {
+    LottoWinningType(long winningAmount, BiPredicate<Integer, Boolean> condition) {
         this.winningAmount = winningAmount;
         this.condition = condition;
     }
@@ -47,7 +47,7 @@ public enum LottoWinningType {
         return Arrays.stream(LottoWinningType.values())
                 .filter(result -> result.condition.test(matchCount, hasBonusNumber))
                 .findFirst()
-                .orElseThrow(IllegalArgumentException::new);
+                .orElse(NONE);
     }
 
     public static EnumMap<LottoWinningType, Integer> createInitCountsMap() {
@@ -58,7 +58,7 @@ public enum LottoWinningType {
         return result;
     }
 
-    public int getWinningAmount() {
+    public long getWinningAmount() {
         return winningAmount;
     }
 }
