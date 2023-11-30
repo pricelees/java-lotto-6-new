@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
@@ -22,5 +23,20 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // 아래에 추가 테스트 작성 가능
+    @DisplayName("로또 번호 중 범위를 초과하는 숫자가 존재하면 예외가 발생한다.")
+    @Test
+    void createLottoByNumberOverRange() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 46)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("두 로또를 비교한 뒤 같은 숫자의 갯수 계산 확인")
+    @Test
+    void calculateMatchedCount() {
+        Lotto user = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto winning = new Lotto(List.of(1, 2, 3, 4, 5, 45));
+
+        int expectedMatchedCount = 5;
+        assertThat(user.calculateMatchedCount(winning)).isEqualTo(expectedMatchedCount);
+    }
 }
