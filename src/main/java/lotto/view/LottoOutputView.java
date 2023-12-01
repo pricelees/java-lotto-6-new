@@ -1,5 +1,6 @@
 package lotto.view;
 
+import java.text.DecimalFormat;
 import java.util.List;
 import lotto.constant.LottoConstants;
 import lotto.dto.response.PurchasedLottoResponse;
@@ -10,11 +11,11 @@ public class LottoOutputView {
     private static final String STATISTICS_PREFIX = "당첨 통계\n---";
     private static final String EARNING_RATE_MESSAGE = "총 수익률은 %.1f%%입니다.";
     private static final String STATISTICS_FORMAT = """
-            3개 일치 (5,000원) - %d개
-            4개 일치 (50,000원) - %d개
-            5개 일치 (1,500,000원) - %d개
-            5개 일치, 보너스 볼 일치 (30,000,000원) - %d개
-            6개 일치 (2,000,000,000원) - %d개
+            3개 일치 (5,000원) - %s개
+            4개 일치 (50,000원) - %s개
+            5개 일치 (1,500,000원) - %s개
+            5개 일치, 보너스 볼 일치 (30,000,000원) - %s개
+            6개 일치 (2,000,000,000원) - %s개
             """;
 
     private final Printer printer;
@@ -42,7 +43,14 @@ public class LottoOutputView {
     }
 
     private void printMatchedInfo(List<Integer> matchCounts) {
-        printer.printFormat(STATISTICS_FORMAT, matchCounts.toArray());
+        printer.printFormat(STATISTICS_FORMAT, formatMatchCount(matchCounts));
+    }
+
+    private Object[] formatMatchCount(List<Integer> matchCount) {
+        final DecimalFormat formatter = new DecimalFormat("###,###");
+        return matchCount.stream()
+                .map(formatter::format)
+                .toArray();
     }
 
     public void printEmptyLine() {
