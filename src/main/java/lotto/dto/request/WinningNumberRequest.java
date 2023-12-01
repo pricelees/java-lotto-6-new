@@ -27,7 +27,7 @@ public record WinningNumberRequest(List<Integer> winningNumber) {
 
     private boolean hasInvalidNumber(List<Integer> winningNumber) {
         return winningNumber.stream()
-                .anyMatch(
-                        number -> number > LottoConstants.LOTTO_MAX_NUMBER || number < LottoConstants.LOTTO_MIN_NUMBER);
+                .anyMatch(number -> number > LottoConstants.LOTTO_MAX_NUMBER
+                        || number < LottoConstants.LOTTO_MIN_NUMBER);
     }
 }
