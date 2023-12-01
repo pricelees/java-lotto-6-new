@@ -3,6 +3,7 @@ package lotto.domain;
 import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.List;
+import java.util.Objects;
 
 public class LottoWinningResult {
     private final EnumMap<LottoWinningType, Integer> allTypesCount;
@@ -19,5 +20,22 @@ public class LottoWinningResult {
 
     public List<Integer> getMatchCount() {
         return new ArrayList<>(allTypesCount.values());
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        LottoWinningResult that = (LottoWinningResult) o;
+        return Objects.equals(allTypesCount, that.allTypesCount);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(allTypesCount);
     }
 }
