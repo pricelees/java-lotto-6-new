@@ -4,16 +4,7 @@ import java.util.List;
 import java.util.Objects;
 import lotto.constant.LottoConstants;
 
-public class UserLotto {
-    private final List<Lotto> lottos;
-
-    public UserLotto(List<Lotto> lottos) {
-        this.lottos = lottos;
-    }
-
-    public List<Lotto> getLottos() {
-        return lottos;
-    }
+public record UserLotto(List<Lotto> lottos) {
 
     public long getPurchasedAmountToBuy() {
         return (long) lottos.size() * LottoConstants.ONE_LOTTO_PRICE;
@@ -28,11 +19,11 @@ public class UserLotto {
             return false;
         }
         UserLotto userLotto = (UserLotto) o;
-        return Objects.equals(getLottos(), userLotto.getLottos());
+        return Objects.equals(lottos(), userLotto.lottos());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getLottos());
+        return Objects.hash(lottos());
     }
 }

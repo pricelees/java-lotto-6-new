@@ -5,15 +5,13 @@ import java.util.List;
 import java.util.Objects;
 import lotto.constant.LottoConstants;
 
-public class Lotto {
+public record Lotto(List<Integer> numbers) {
     private static final String INVALID_SIZE = "로또의 번호는 6개여야 합니다.";
     private static final String HAS_DUPLICATE_NUMBER = "중복된 번호가 존재합니다.";
     private static final String HAS_INVALID_NUMBER = "범위를 초과하는 숫자가 존재합니다.";
-    private final List<Integer> numbers;
 
-    public Lotto(List<Integer> numbers) {
+    public Lotto {
         validate(numbers);
-        this.numbers = numbers;
     }
 
     private void validate(List<Integer> numbers) {
@@ -52,10 +50,6 @@ public class Lotto {
                 .count();
     }
 
-    public List<Integer> getNumbers() {
-        return numbers;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -65,11 +59,11 @@ public class Lotto {
             return false;
         }
         Lotto lotto = (Lotto) o;
-        return Objects.equals(getNumbers(), lotto.getNumbers());
+        return Objects.equals(numbers(), lotto.numbers());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getNumbers());
+        return Objects.hash(numbers());
     }
 }
