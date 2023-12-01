@@ -27,7 +27,7 @@ public class Configuration {
     }
 
     private static LottoInputView lottoInputView() {
-        return new LottoInputView(reader());
+        return new LottoInputView(reader(), printer());
     }
 
     private static LottoOutputView lottoOutputView() {
