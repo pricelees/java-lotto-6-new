@@ -4,11 +4,11 @@ import lotto.constant.LottoConstants;
 
 public class BonusNumber {
     private static final String INVALID_RANGE = "숫자 범위가 유효하지 않습니다.";
-    private final int bonusNumber;
+    private final int number;
 
-    public BonusNumber(int bonusNumber) {
-        validate(bonusNumber);
-        this.bonusNumber = bonusNumber;
+    public BonusNumber(int number) {
+        validate(number);
+        this.number = number;
     }
 
     private void validate(int bonusNumber) {
@@ -21,7 +21,7 @@ public class BonusNumber {
         return bonusNumber > LottoConstants.LOTTO_MAX_NUMBER || bonusNumber < LottoConstants.LOTTO_MIN_NUMBER;
     }
 
-    public int getBonusNumber() {
-        return bonusNumber;
+    public int getNumber() {
+        return number;
     }
 }
