@@ -1,5 +1,7 @@
 package lotto.view;
 
+import lotto.constant.LottoConstants;
+
 public class Printer {
     public void print(Object input) {
         System.out.println(input);
@@ -15,5 +17,9 @@ public class Printer {
 
     public void printEmptyLine() {
         System.out.println();
+    }
+
+    public static void printException(String exceptionMessage) {
+        System.out.println(exceptionMessage + LottoConstants.LINE_SEPARATOR);
     }
 }
