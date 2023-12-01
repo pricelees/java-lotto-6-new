@@ -6,6 +6,9 @@ import lotto.view.Printer;
 public class ExceptionHandler {
     private static final String ERROR_PREFIX = "[ERROR] ";
 
+    private ExceptionHandler() {
+    }
+
     public static <T> T retryInputOnException(final Supplier<T> supplier) {
         try {
             return supplier.get();

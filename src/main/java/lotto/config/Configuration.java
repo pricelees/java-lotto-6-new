@@ -10,6 +10,9 @@ import lotto.view.Printer;
 import lotto.view.Reader;
 
 public class Configuration {
+    private Configuration() {
+    }
+
     public static LottoController lottoController() {
         return new LottoController(lottoService(), lottoInputView(), lottoOutputView());
     }
