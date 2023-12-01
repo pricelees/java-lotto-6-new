@@ -19,17 +19,17 @@ public class LottoService {
         this.lottoCompareService = lottoCompareService;
     }
 
-    public UserLotto buyLotto(LottoPurchaseRequest lottoPurchaseRequest) {
-        return lottoBuyService.buyLotto(lottoPurchaseRequest);
+    public UserLotto createUserLotto(LottoPurchaseRequest lottoPurchaseRequest) {
+        return lottoBuyService.createUserLotto(lottoPurchaseRequest);
     }
 
-    public List<PurchasedLottoResponse> printPurchasedLotto(UserLotto userLotto) {
+    public List<PurchasedLottoResponse> showPurchasedLotto(UserLotto userLotto) {
         return lottoBuyService.showPurchasedLottos(userLotto);
     }
 
-    public WinningLotto receiveWinningLottoInfo(WinningNumberRequest winningNumberRequest,
-                                                BonusNumberRequest bonusNumberRequest) {
-        return lottoCompareService.receiveWinningLottoInfo(winningNumberRequest, bonusNumberRequest);
+    public WinningLotto createWinningLotto(WinningNumberRequest winningNumberRequest,
+                                           BonusNumberRequest bonusNumberRequest) {
+        return lottoCompareService.createWinningLotto(winningNumberRequest, bonusNumberRequest);
     }
 
     public LottoWinningResult compare(UserLotto userLotto, WinningLotto winningLotto) {

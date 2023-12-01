@@ -15,7 +15,9 @@ import lotto.dto.response.WinningResponse;
 public class LottoCompareService {
     private static final int COUNT_UNIT = 1;
     private static final int HUNDRED = 100;
-    public WinningLotto receiveWinningLottoInfo(WinningNumberRequest winningNumberRequest, BonusNumberRequest bonusNumberRequest) {
+
+    public WinningLotto createWinningLotto(WinningNumberRequest winningNumberRequest,
+                                           BonusNumberRequest bonusNumberRequest) {
         return WinningLotto.valueOf(
                 winningNumberRequest.winningNumber(),
                 bonusNumberRequest.bonusNumber()
@@ -49,6 +51,6 @@ public class LottoCompareService {
     }
 
     private double calculateEarningRate(long purchaseAmount, long winningAmount) {
-        return ((double)winningAmount / purchaseAmount) * HUNDRED;
+        return ((double) winningAmount / purchaseAmount) * HUNDRED;
     }
 }

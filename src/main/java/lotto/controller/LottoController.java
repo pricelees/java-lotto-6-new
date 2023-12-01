@@ -45,8 +45,8 @@ public class LottoController {
 
     private UserLotto receiveUserLotto() {
         LottoPurchaseRequest lottoPurchaseRequest = receivePurchaseAmount();
-        UserLotto userLotto = lottoService.buyLotto(lottoPurchaseRequest);
-        lottoOutputView.printPurchasedLotto(lottoService.printPurchasedLotto(userLotto));
+        UserLotto userLotto = lottoService.createUserLotto(lottoPurchaseRequest);
+        lottoOutputView.printPurchasedLotto(lottoService.showPurchasedLotto(userLotto));
 
         return userLotto;
     }
@@ -64,7 +64,7 @@ public class LottoController {
         WinningNumberRequest winningNumberRequest = receiveWinningNumbers();
         BonusNumberRequest bonusNumberRequest = receiveBonusNumber(winningNumberRequest);
 
-        return lottoService.receiveWinningLottoInfo(winningNumberRequest, bonusNumberRequest);
+        return lottoService.createWinningLotto(winningNumberRequest, bonusNumberRequest);
     }
 
     private WinningNumberRequest receiveWinningNumbers() {

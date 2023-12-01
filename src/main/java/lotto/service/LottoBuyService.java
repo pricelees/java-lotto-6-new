@@ -7,7 +7,7 @@ import lotto.dto.request.LottoPurchaseRequest;
 import lotto.dto.response.PurchasedLottoResponse;
 
 public class LottoBuyService {
-    public UserLotto buyLotto(LottoPurchaseRequest lottoPurchaseRequest) {
+    public UserLotto createUserLotto(LottoPurchaseRequest lottoPurchaseRequest) {
         long amount = lottoPurchaseRequest.amount();
         return new UserLotto(LottoCreator.createLottoByAmount(amount));
     }
