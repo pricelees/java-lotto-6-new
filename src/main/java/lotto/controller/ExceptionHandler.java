@@ -1,7 +1,7 @@
 package lotto.controller;
 
 import java.util.function.Supplier;
-import lotto.constant.LottoConstants;
+import lotto.view.Printer;
 
 public class ExceptionHandler {
     private static final String ERROR_PREFIX = "[ERROR] ";
@@ -10,7 +10,7 @@ public class ExceptionHandler {
         try {
             return supplier.get();
         } catch (IllegalArgumentException e) {
-            System.out.println(ERROR_PREFIX + e.getMessage() + LottoConstants.LINE_SEPARATOR);
+            Printer.printException(ERROR_PREFIX + e.getMessage());
             return retryInputOnException(supplier);
         }
     }
