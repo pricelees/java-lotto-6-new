@@ -1,14 +1,14 @@
 package lotto.domain;
 
 import java.util.ArrayList;
-import java.util.EnumMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 public class LottoWinningResult {
-    private final EnumMap<LottoWinningType, Integer> allTypesCount;
+    private final Map<LottoWinningType, Integer> allTypesCount;
 
-    public LottoWinningResult(EnumMap<LottoWinningType, Integer> allTypesCount) {
+    public LottoWinningResult(Map<LottoWinningType, Integer> allTypesCount) {
         this.allTypesCount = allTypesCount;
     }
 

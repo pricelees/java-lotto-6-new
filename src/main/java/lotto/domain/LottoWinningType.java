@@ -2,6 +2,7 @@ package lotto.domain;
 
 import java.util.Arrays;
 import java.util.EnumMap;
+import java.util.Map;
 import java.util.function.BiPredicate;
 import lotto.constant.LottoConstants;
 
@@ -50,7 +51,7 @@ public enum LottoWinningType {
                 .orElse(NONE);
     }
 
-    public static EnumMap<LottoWinningType, Integer> createInitCountsMap() {
+    public static Map<LottoWinningType, Integer> createInitCountsMap() {
         EnumMap<LottoWinningType, Integer> result = new EnumMap<>(LottoWinningType.class);
         Arrays.stream(LottoWinningType.values())
                 .filter(LottoWinningType::isWin)

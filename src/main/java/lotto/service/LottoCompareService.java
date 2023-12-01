@@ -1,7 +1,7 @@
 package lotto.service;
 
-import java.util.EnumMap;
 import java.util.List;
+import java.util.Map;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.LottoWinningResult;
@@ -26,17 +26,17 @@ public class LottoCompareService {
 
     public LottoWinningResult compare(UserLotto userLotto, WinningLotto winningLotto) {
         return new LottoWinningResult(compare(
-                userLotto.getLottos(), winningLotto.getNumbers(), winningLotto.getBonusNumber()
+                userLotto.lottos(), winningLotto.getNumbers(), winningLotto.getBonusNumber()
         ));
     }
 
-    private EnumMap<LottoWinningType, Integer> compare(List<Lotto> lottos, Lotto winningLotto,
-                                                       BonusNumber bonusNumber) {
-        EnumMap<LottoWinningType, Integer> eachResultsCount = LottoWinningType.createInitCountsMap();
+    private Map<LottoWinningType, Integer> compare(List<Lotto> lottos, Lotto winningLotto,
+                                                   BonusNumber bonusNumber) {
+        Map<LottoWinningType, Integer> eachResultsCount = LottoWinningType.createInitCountsMap();
         lottos.stream()
                 .map(lotto -> {
                     int matchCount = lotto.calculateMatchedCount(winningLotto);
-                    boolean hasBonusNumber = lotto.isContain(bonusNumber.getBonusNumber());
+                    boolean hasBonusNumber = lotto.isContain(bonusNumber.getNumber());
                     return LottoWinningType.from(matchCount, hasBonusNumber);
                 })
                 .filter(LottoWinningType::isWin)
