@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import java.util.List;
 import lotto.domain.LottoWinningResult;
 import lotto.domain.UserLotto;
 import lotto.domain.WinningLotto;
@@ -52,9 +53,7 @@ public class LottoController {
     }
 
     private LottoPurchaseRequest receivePurchaseAmount() {
-        LottoPurchaseRequest lottoPurchaseRequest = ExceptionHandler.retryInputOnException(
-                lottoInputView::receivePurchaseAmount
-        );
+        LottoPurchaseRequest lottoPurchaseRequest = lottoInputView.receivePurchaseAmount();
         lottoOutputView.printEmptyLine();
 
         return lottoPurchaseRequest;
@@ -62,24 +61,20 @@ public class LottoController {
 
     private WinningLotto receiveWinningLotto() {
         WinningNumberRequest winningNumberRequest = receiveWinningNumbers();
-        BonusNumberRequest bonusNumberRequest = receiveBonusNumber(winningNumberRequest);
+        BonusNumberRequest bonusNumberRequest = receiveBonusNumber(winningNumberRequest.winningNumber());
 
         return lottoService.createWinningLotto(winningNumberRequest, bonusNumberRequest);
     }
 
     private WinningNumberRequest receiveWinningNumbers() {
-        WinningNumberRequest winningNumberRequest = ExceptionHandler.retryInputOnException(
-                lottoInputView::receiveWinningNumber
-        );
+        WinningNumberRequest winningNumberRequest = lottoInputView.receiveWinningNumber();
         lottoOutputView.printEmptyLine();
 
         return winningNumberRequest;
     }
 
-    private BonusNumberRequest receiveBonusNumber(WinningNumberRequest winningNumberRequest) {
-        BonusNumberRequest bonusNumberRequest = ExceptionHandler.retryInputOnException(
-                () -> lottoInputView.receiveBonusNumber(winningNumberRequest)
-        );
+    private BonusNumberRequest receiveBonusNumber(List<Integer> winningNumber) {
+        BonusNumberRequest bonusNumberRequest = lottoInputView.receiveBonusNumber(winningNumber);
         lottoOutputView.printEmptyLine();
 
         return bonusNumberRequest;
