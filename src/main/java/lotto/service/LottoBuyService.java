@@ -13,8 +13,8 @@ public class LottoBuyService {
     }
 
     public List<PurchasedLottoResponse> showPurchasedLottos(UserLotto userLotto) {
-        return userLotto.getLottos().stream()
-                .map(lotto -> new PurchasedLottoResponse(lotto.getNumbers()))
+        return userLotto.lottos().stream()
+                .map(lotto -> new PurchasedLottoResponse(lotto.numbers()))
                 .toList();
     }
 }
