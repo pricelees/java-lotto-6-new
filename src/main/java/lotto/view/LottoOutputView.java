@@ -42,7 +42,7 @@ public class LottoOutputView {
     }
 
     private void printMatchedInfo(List<Integer> matchCounts) {
-        printer.printFormat(STATISTICS_FORMAT + LottoConstants.LINE_SEPARATOR, matchCounts.toArray());
+        printer.printFormat(STATISTICS_FORMAT, matchCounts.toArray());
     }
 
     public void printEmptyLine() {
